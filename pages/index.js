@@ -1,5 +1,5 @@
 import Layout from '../components/layout'
-import Sidebar from '../components/sidebar'
+import Navbar from '../components/Navbar'
 
 export default function Index() {
   return (
@@ -25,7 +25,7 @@ export default function Index() {
       <h3>Try It Out</h3>
       <p>
         To visualize this, try tying in the search input in the{' '}
-        <code>Sidebar</code> and then changing routes. You'll notice the input
+        <code>Navbar</code> and then changing routes. You'll notice the input
         state is persisted.
       </p>
     </section>
@@ -35,7 +35,7 @@ export default function Index() {
 Index.getLayout = function getLayout(page) {
   return (
     <Layout>
-      <Sidebar />
+      <Navbar />
       {page}
     </Layout>
   )

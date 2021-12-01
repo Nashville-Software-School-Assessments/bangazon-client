@@ -1,6 +1,6 @@
 # Layout component example
 
-This example shows a very common use case when building websites where you need to repeat some sort of layout for all your pages. Our pages are: `home`, `about` and `contact` and they all share the same layout and sidebar.
+This example shows a very common use case when building websites where you need to repeat some sort of layout for all your pages. Our pages are: `home`, `about` and `contact` and they all share the same layout and Navbar.
 
 ## Preview
 

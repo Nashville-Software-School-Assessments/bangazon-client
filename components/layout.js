@@ -1,13 +1,17 @@
 import Head from 'next/head'
-import styles from './layout.module.css'
+import { useEffect } from 'react'
+// import styles from './layout.module.css'
 
 export default function Layout({ children }) {
+  useEffect(() => {
+    console.log(children)
+  }, [])
   return (
     <>
       <Head>
-        <title>Layouts Example</title>
+        <title>Title</title>
       </Head>
-      <main className={styles.main}>{children}</main>
+      <main className="container">{children}</main>
     </>
   )
 }

@@ -1,5 +1,5 @@
 import Layout from '../components/layout'
-import Navbar from '../components/Navbar'
+import Navbar from '../components/navbar'
 
 export default function Index() {
   return (

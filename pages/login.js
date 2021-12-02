@@ -1,68 +1,82 @@
-import { useRouter } from 'next/router'
 import Link from 'next/link'
+import { useRouter } from 'next/router'
 import { useRef } from 'react'
 import Layout from '../components/layout'
+import Navbar from '../components/navbar'
+import { fetchWithResponse } from '../data/fetcher'
 
 export default function Login() {
-  const username = useRef()
-  const password = useRef()
+  const username = useRef('')
+  const password = useRef('')
   const router = useRouter()
 
-  const handleLogin = (e) => {
-    e.preventDefault()
+  const submit = (event) => {
+    event.preventDefault()
+    const body = {
+      username: username.current.value,
+      password: password.current.value,
+    }
 
-    return fetch("http://localhost:8000/api/login", {
-      method: "POST",
+    fetchWithResponse('api/login', {
+      method: 'POST',
       headers: {
-        "Content-Type": "application/json",
-        "Accept": "application/json"
+        'Content-Type': 'application/json'
       },
-      body: JSON.stringify({
-        username: username.current.value,
-        password: password.current.value
-      })
+      body: JSON.stringify(body)
+    }).then((res) => {
+      localStorage.setItem('token', res.token)
+      router.push('/')
     })
-      .then(res => res.json())
-      .then(res => {
-        if (res.token) {
-          localStorage.setItem("token", res.token)
-          router.replace("/")
-        }
-      })
   }
-  
-  return (
-    <main className="container--login">
 
-      <section>
-        <form className="form--login" onSubmit={handleLogin}>
-          <h1>Level Up</h1>
-          <h2>Please sign in</h2>
-          <fieldset>
-            <label htmlFor="inputUsername"> Username </label>
-            <input ref={username} type="text" id="username" className="form-control" placeholder="Username address" required autoFocus />
-          </fieldset>
-          <fieldset>
-            <label htmlFor="inputPassword"> Password </label>
-            <input ref={password} type="password" id="password" className="form-control" placeholder="Password" required />
-          </fieldset>
-          <fieldset style={{
-            textAlign: "center"
-          }}>
-            <button className="btn btn-1 btn-sep icon-send" type="submit">Sign In</button>
-          </fieldset>
+  return (
+    <div class="columns is-centered">
+      <div class="column is-half">
+        <form class="box">
+          <h1 class="title">Welcome Back!</h1>
+          <div class="field">
+            <label class="label">Username</label>
+            <div class="control">
+              <input
+                class="input"
+                type="text"
+                placeholder="Text input"
+                ref={username}
+              ></input>
+            </div>
+          </div>
+
+          <div class="field">
+            <label class="label">Password</label>
+            <div class="control">
+              <input
+                class="input"
+                type="password"
+                ref={password}
+              ></input>
+            </div>
+          </div>
+
+          <div class="field is-grouped">
+            <div class="control">
+              <button class="button is-link" onClick={submit}>Login</button>
+            </div>
+            <div class="control">
+              <Link href="/register">
+                <button class="button is-link is-light">Register</button>
+              </Link>
+            </div>
+          </div>
         </form>
-      </section>
-      <section className="link--register">
-        <Link href="/register"><a>Not a member yet?</a></Link>
-      </section>
-    </main>
+      </div>
+    </div>
   )
 }
 
 Login.getLayout = function getLayout(page) {
   return (
     <Layout>
+      <Navbar />
       {page}
     </Layout>
   )

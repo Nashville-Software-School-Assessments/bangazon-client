@@ -3,9 +3,6 @@ import { useEffect } from 'react'
 // import styles from './layout.module.css'
 
 export default function Layout({ children }) {
-  useEffect(() => {
-    console.log(children)
-  }, [])
   return (
     <>
       <Head>

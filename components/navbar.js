@@ -1,6 +1,58 @@
 import Link from 'next/link'
+import { useEffect, useState } from 'react'
 
 export default function Navbar() {
+  const [isLoggedIn, setIsLoggedIn] = useState(false)
+  useEffect(() => {
+    const token = localStorage.getItem('token')
+    if (token) {
+      setIsLoggedIn(true)
+    }
+  }, [])
+
+  const getLoggedInButtons = () => {
+    return (
+      <div className="navbar-end">
+        <div className="navbar-item has-dropdown is-hoverable">
+          <a class="navbar-link">
+            Profile
+          </a>
+          <div class="navbar-dropdown">
+            
+            <hr class="navbar-divider"></hr>
+            <a className="navbar-item" onClick={
+              () => {
+                localStorage.removeItem('token')
+                setIsLoggedIn(false)
+              }}
+            >
+              Log out
+            </a>
+          </div>
+        </div>
+      </div>
+    )
+  }
+
+  const getLoggedOutButtons = () => {
+    return (
+      <div className="navbar-item">
+        <div className="buttons">
+          <Link href="/register">
+            <a className="button is-primary">
+              <strong>Sign up</strong>
+            </a>
+          </Link>
+          <Link href="/login">
+            <a className="button is-light">
+              Log in
+            </a>
+          </Link>
+        </div>
+      </div>
+    )
+  }
+
   return (
 
     <nav className="navbar mb-3" role="navigation" aria-label="main navigation">
@@ -16,53 +68,15 @@ export default function Navbar() {
         </a>
       </div>
 
-      <div id="navbarBasicExample" className="navbar-menu">
+      <div className="navbar-menu">
         <div className="navbar-start">
-          <a className="navbar-item">
-            Home
-          </a>
-
           <Link href="/products"><a className="navbar-item">Products</a></Link>
-          <Link href="/orders"><a className="navbar-item">Orders</a></Link>
-
-          <div className="navbar-item has-dropdown is-hoverable">
-            <a className="navbar-link">
-              More
-            </a>
-
-            <div className="navbar-dropdown">
-              <a className="navbar-item">
-                About
-              </a>
-              <a className="navbar-item">
-                Jobs
-              </a>
-              <a className="navbar-item">
-                Contact
-              </a>
-              <hr className="navbar-divider"></hr>
-              <a className="navbar-item">
-                Report an issue
-              </a>
-            </div>
-          </div>
+          <Link href="/stores"><a className="navbar-item">Stores</a></Link>
         </div>
-
         <div className="navbar-end">
-          <div className="navbar-item">
-            <div className="buttons">
-              <Link href="/register">
-                <a className="button is-primary">
-                  <strong>Sign up</strong>
-                </a>
-              </Link>
-              <Link href="/login">
-                <a className="button is-light">
-                  Log in
-                </a>
-              </Link>
-            </div>
-          </div>
+          {
+            isLoggedIn ? getLoggedInButtons() : getLoggedOutButtons()
+          }
         </div>
       </div>
     </nav>

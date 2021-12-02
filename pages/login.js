@@ -40,7 +40,6 @@ export default function Login() {
               <input
                 class="input"
                 type="text"
-                placeholder="Text input"
                 ref={username}
               ></input>
             </div>

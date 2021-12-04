@@ -1,6 +1,7 @@
 import Link from 'next/link'
 import { useRouter } from 'next/router'
 import { useRef } from 'react'
+import { Input } from '../components/form-elements/input'
 import Layout from '../components/layout'
 import Navbar from '../components/navbar'
 import { fetchWithResponse } from '../data/fetcher'
@@ -34,60 +35,43 @@ export default function Register() {
   }
 
   return (
-    <div class="columns is-centered">
-      <div class="column is-half">
-        <form class="box">
-          <h1 class="title">Welcome!</h1>
-          <div class="field">
-            <label class="label">First Name</label>
-            <div class="control">
-              <input
-                class="input"
-                type="text"
-                ref={firstName}
-              ></input>
-            </div>
-          </div>
-          <div class="field">
-            <label class="label">Last Name</label>
-            <div class="control">
-              <input
-                class="input"
-                type="text"
-                ref={lastName}
-              ></input>
-            </div>
-          </div>
+    <div className="columns is-centered">
+      <div className="column is-half">
+        <form className="box">
+          <h1 className="title">Welcome!</h1>
+          <Input
+            id="firstName"
+            refEl={firstName}
+            type="text"
+            label="First Name"
+          />
+          <Input
+            id="lastName"
+            refEl={lastName}
+            type="text"
+            label="Last Name"
+          />
 
-          <div class="field">
-            <label class="label">Username</label>
-            <div class="control">
-              <input
-                class="input"
-                type="text"
-                ref={username}
-              ></input>
-            </div>
-          </div>
+          <Input
+            id="username"
+            refEl={username}
+            type="text"
+            label="Username"
+          />
+          <Input
+            id="password"
+            refEl={password}
+            type="password"
+            label="Password"
+          />
 
-          <div class="field">
-            <label class="label">Password</label>
-            <div class="control">
-              <input
-                class="input"
-                type="password"
-                ref={password}
-              ></input>
+          <div className="field is-grouped">
+            <div className="control">
+              <button className="button is-link" onClick={submit}>Submit</button>
             </div>
-          </div>
-
-          <div class="field is-grouped">
-            <div class="control">
-              <button class="button is-link" onClick={submit}>Submit</button>
-            </div>
-            <div class="control">
+            <div className="control">
               <Link href="/login">
-                <button class="button is-link is-light">Cancel</button>
+                <button className="button is-link is-light">Cancel</button>
               </Link>
             </div>
           </div>

@@ -12,23 +12,20 @@ export default function Navbar() {
 
   const getLoggedInButtons = () => {
     return (
-      <div className="navbar-end">
-        <div className="navbar-item has-dropdown is-hoverable">
-          <a class="navbar-link">
-            Profile
+      <div className="navbar-item has-dropdown is-hoverable">
+        <a className="navbar-link">
+          Profile
+        </a>
+        <div className="navbar-dropdown">
+          <hr className="navbar-divider"></hr>
+          <a className="navbar-item" onClick={
+            () => {
+              localStorage.removeItem('token')
+              setIsLoggedIn(false)
+            }}
+          >
+            Log out
           </a>
-          <div class="navbar-dropdown">
-            
-            <hr class="navbar-divider"></hr>
-            <a className="navbar-item" onClick={
-              () => {
-                localStorage.removeItem('token')
-                setIsLoggedIn(false)
-              }}
-            >
-              Log out
-            </a>
-          </div>
         </div>
       </div>
     )

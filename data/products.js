@@ -21,3 +21,11 @@ export function getCategories() {
     }
   })
 }
+
+export function getProductById(id) {
+  return fetchWithResponse(`api/products/${id}`, {
+    headers: {
+      Authorization: `Token ${localStorage.getItem('token')}`
+    }
+  })
+}

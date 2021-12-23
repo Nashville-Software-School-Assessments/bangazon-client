@@ -29,3 +29,12 @@ export function getProductById(id) {
     }
   })
 }
+
+export function addProductToOrder(id) {
+  return fetchWithResponse(`api/products/${id}/add_to_order`, {
+    method: 'POST',
+    headers: {
+      Authorization: `Token ${localStorage.getItem('token')}`
+    }
+  })
+}

@@ -1,2 +1,6 @@
 @import "@fortawesome/fontawesome-free/css/all.min.css";
 @import "bulma/css/bulma.min.css";
+
+body {
+    padding-top: 4.5rem;
+}

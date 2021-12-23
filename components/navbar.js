@@ -14,9 +14,13 @@ export default function Navbar() {
     return (
       <div className="navbar-item has-dropdown is-hoverable">
         <a className="navbar-link">
-          Profile
+          <span className="icon">
+            <i className="fas fa-user-circle is-medium"></i>
+          </span>
         </a>
-        <div className="navbar-dropdown">
+        <div className="navbar-dropdown is-right">
+          <Link href="/cart"><a className="navbar-item">Cart</a></Link>
+
           <hr className="navbar-divider"></hr>
           <a className="navbar-item" onClick={
             () => {
@@ -52,7 +56,7 @@ export default function Navbar() {
 
   return (
 
-    <nav className="navbar mb-3" role="navigation" aria-label="main navigation">
+    <nav className="navbar mb-3 is-warning px-5 is-fixed-top" role="navigation" aria-label="main navigation">
       <div className="navbar-brand">
         <a className="navbar-item" href="https://bulma.io">
           <img src="https://bulma.io/images/bulma-logo.png" width="112" height="28"></img>

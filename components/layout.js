@@ -6,7 +6,7 @@ export default function Layout({ children }) {
   return (
     <>
       <Head>
-        <title>Title</title>
+        <title>Bangazon</title>
       </Head>
       <main className="container">{children}</main>
     </>

@@ -7,3 +7,11 @@ export function getStores() {
     }
   })
 }
+
+export function getStoreById(id) {
+  return fetchWithResponse(`api/stores/${id}`, {
+    headers: {
+      Authorization: `Token ${localStorage.getItem('token')}`
+    }
+  })
+}

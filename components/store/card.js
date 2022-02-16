@@ -18,7 +18,9 @@ export function StoreCard({ store }) {
           </div>
         </div>
         <footer className="card-footer">
-          <a href="#" className="card-footer-item">View Store</a>
+          <Link href={`stores/${store.id}`}>
+            <a className="card-footer-item">View Store</a>
+          </Link>
         </footer>
       </div>
     </div>

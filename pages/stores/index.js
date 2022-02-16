@@ -1,4 +1,3 @@
-
 import { useEffect, useState } from 'react'
 import Layout from '../../components/layout'
 import Navbar from '../../components/navbar'
@@ -17,7 +16,7 @@ export default function Stores() {
       <div className="columns is-multiline">
       {
         stores.map(store => (
-          <StoreCard store={store} />
+          <StoreCard store={store} key={store.id} />
         ))
       }
       </div>

@@ -11,7 +11,7 @@ export function ProductCard({ product }) {
         </div>
         <header className="card-header">
           <p className="card-header-title">
-            <Link href={`products/${product.id}`}><a className="">{product.name} - ${product.price}</a></Link>
+            <Link href={`/products/${product.id}`}><a>{product.name} - ${product.price}</a></Link>
           </p>
         </header>
         <div className="card-content">

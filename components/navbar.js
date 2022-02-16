@@ -58,8 +58,8 @@ export default function Navbar() {
 
     <nav className="navbar mb-3 is-warning px-5 is-fixed-top" role="navigation" aria-label="main navigation">
       <div className="navbar-brand">
-        <a className="navbar-item" href="https://bulma.io">
-          <img src="https://bulma.io/images/bulma-logo.png" width="112" height="28"></img>
+        <a className="navbar-item" href="/">
+          Bangazon Unlimited
         </a>
 
         <a role="button" className="navbar-burger" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">

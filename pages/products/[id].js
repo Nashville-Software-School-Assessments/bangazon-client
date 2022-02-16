@@ -11,9 +11,13 @@ export default function ProductDetail() {
   const { id } = router.query
   const [product, setProduct] = useState({})
 
+  const refresh = () => {
+    getProductById(id).then(productData => setProduct(productData))
+  }
+
   useEffect(() => {
     if (id) {
-      getProductById(id).then(productData => setProduct(productData))
+      refresh()
     }
   }, [id])
 
@@ -22,6 +26,7 @@ export default function ProductDetail() {
       <div className="column">
         <Detail product={product} />
         <Ratings
+          refresh={refresh}
           number_purchased={product.number_purchased}
           ratings={product.ratings}
           average_rating={product.average_rating}

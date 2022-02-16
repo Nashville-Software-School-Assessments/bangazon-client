@@ -38,3 +38,14 @@ export function addProductToOrder(id) {
     }
   })
 }
+
+export function rateProduct(productId, rating) {
+  return fetchWithResponse(`api/products/${productId}/rate-product`, {
+    method: 'POST',
+    headers: {
+      Authorization: `Token ${localStorage.getItem('token')}`,
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify(rating)
+  })
+}

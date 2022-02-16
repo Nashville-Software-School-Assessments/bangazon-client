@@ -1,4 +1,3 @@
-import Link from 'next/link'
 import { useEffect, useRef, useState } from 'react'
 import { getCategories } from '../data/products'
 import { Input } from './form-elements/input'

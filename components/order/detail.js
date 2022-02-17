@@ -17,7 +17,7 @@ export default function CartDetail({cart}) {
         {
           cart.products?.map(product => {
             return (
-              <tr>
+              <tr key={product.id}>
                 <td>{product.name}</td>
                 <td>{product.price}</td>
                 <td>Remove</td>

@@ -1,13 +1,12 @@
 const baseUrl = 'http://localhost:8000'
 const checkError = (res) => {
-  if (!res.ok) {
+  if (!res.ok && res.status === 401) {
     throw Error(res.statusText);
   }
   return res
 }
 
-const catchError = (err) => {
-  console.log(err)
+const catchError = () => {
   window.location.href = "/login"
 }
 

@@ -20,7 +20,7 @@ export default function Navbar() {
         </a>
         <div className="navbar-dropdown is-right">
           <Link href="/cart"><a className="navbar-item">Cart</a></Link>
-
+          <Link href="/payments"><a className="navbar-item">Payment Methods</a></Link>
           <hr className="navbar-divider"></hr>
           <a className="navbar-item" onClick={
             () => {
@@ -58,9 +58,7 @@ export default function Navbar() {
 
     <nav className="navbar mb-3 is-warning px-5 is-fixed-top" role="navigation" aria-label="main navigation">
       <div className="navbar-brand">
-        <a className="navbar-item" href="/">
-          Bangazon Unlimited
-        </a>
+        <Link href="/"><a className="navbar-item">Bangazon Unlimited</a></Link>
 
         <a role="button" className="navbar-burger" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">
           <span aria-hidden="true"></span>

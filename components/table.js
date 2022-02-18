@@ -1,4 +1,4 @@
-export default function Table({ headers, footers=[], children }) {
+export default function Table({ headers, footers = [], children }) {
   return (
     <>
       <table className="table">
@@ -10,9 +10,11 @@ export default function Table({ headers, footers=[], children }) {
           </tr>
         </thead>
         <tfoot>
-          {
-            footers.map(footer => <th key={footer}>{footer}</th>)
-          }
+          <tr>
+            {
+              footers.map(footer => <th key={footer}>{footer}</th>)
+            }
+          </tr>
         </tfoot>
         <tbody>
           {children}

@@ -6,6 +6,7 @@ import CartDetail from '../components/order/detail'
 import CompleteFormModal from '../components/order/form-modal'
 import { completeCurrentOrder, getCart } from '../data/orders'
 import { getPaymentTypes } from '../data/payment-types'
+import { removeProductFromOrder } from '../data/products'
 
 export default function Cart() {
   const [cart, setCart] = useState({})
@@ -13,13 +14,21 @@ export default function Cart() {
   const [showCompleteForm, setShowCompleteForm] = useState(false)
   const router = useRouter()
 
-  useEffect(() => {
+  const refresh = () => {
     getCart().then(cartData => setCart(cartData))
+  }
+
+  useEffect(() => {
+    refresh()
     getPaymentTypes().then(paymentData => setPaymentTypes(paymentData))
   }, [])
 
   const completeOrder = (paymentTypeId) => {
     completeCurrentOrder(cart.id, paymentTypeId).then(() => router.push('/my-orders'))
+  }
+
+  const removeProduct = (productId) => {
+    removeProductFromOrder(productId).then(refresh)
   }
 
   return (
@@ -40,7 +49,7 @@ export default function Cart() {
             </header>
             <div className="card-content">
               <div className="content">
-                <CartDetail cart={cart} />
+                <CartDetail cart={cart} removeProduct={removeProduct}/>
               </div>
             </div>
             <footer className="card-footer">

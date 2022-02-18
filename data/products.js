@@ -1,4 +1,4 @@
-import { fetchWithResponse } from './fetcher'
+import { fetchWithResponse, fetchWithoutResponse } from './fetcher'
 
 export function getProducts(query=undefined) {
   const url = 'api/products'
@@ -33,6 +33,15 @@ export function getProductById(id) {
 export function addProductToOrder(id) {
   return fetchWithResponse(`api/products/${id}/add_to_order`, {
     method: 'POST',
+    headers: {
+      Authorization: `Token ${localStorage.getItem('token')}`
+    }
+  })
+}
+
+export function removeProductFromOrder(id) {
+  return fetchWithoutResponse(`api/products/${id}/remove_from_order`, {
+    method: 'DELETE',
     headers: {
       Authorization: `Token ${localStorage.getItem('token')}`
     }

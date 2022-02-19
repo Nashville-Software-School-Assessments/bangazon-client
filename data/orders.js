@@ -9,7 +9,7 @@ export function getCart() {
 }
 
 export function completeCurrentOrder(orderId, paymentTypeId) {
-  fetchWithoutResponse(`api/orders/${orderId}/complete`, {
+  return fetchWithResponse(`api/orders/${orderId}/complete`, {
     method: 'PUT',
     headers: {
       Authorization: `Token ${localStorage.getItem('token')}`,

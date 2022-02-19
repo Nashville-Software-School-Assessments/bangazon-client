@@ -3,19 +3,30 @@ import { useState, useEffect } from 'react'
 import CardLayout from '../components/card-layout'
 import Layout from '../components/layout'
 import Navbar from '../components/navbar'
+import AddPaymentModal from '../components/payments/payment-modal'
 import Table from '../components/table'
-import { getPaymentTypes } from '../data/payment-types'
+import { addPaymentType, getPaymentTypes } from '../data/payment-types'
 
 export default function Payments() {
   const headers = ['Merchant Name', 'Card Number', '']
   const [payments, setPayments] = useState([])
-
+  const [showModal, setShowModal] = useState(false)
+  const refresh = () => getPaymentTypes().then(setPayments)
+  
   useEffect(() => {
-    getPaymentTypes().then(setPayments)
+    refresh()
   }, [])
+
+  const addNewPayment = (payment) => {
+    addPaymentType(payment).then(() => {
+      setShowModal(false)
+      refresh()
+    })
+  }
 
   return (
     <>
+      <AddPaymentModal showModal={showModal} setShowModal={setShowModal} addNewPayment={addNewPayment} />
       <CardLayout title="Your Payment Methods">
         <Table headers={headers}>
           {
@@ -33,7 +44,7 @@ export default function Payments() {
           }
         </Table>
         <>
-          <a className="card-footer-item" onClick={() => { }}>Add new Payment Method</a>
+          <a className="card-footer-item" onClick={() => setShowModal(true)}>Add new Payment Method</a>
         </>
       </CardLayout>
     </>

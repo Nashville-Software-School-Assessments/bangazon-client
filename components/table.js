@@ -5,14 +5,14 @@ export default function Table({ headers, footers = [], children }) {
         <thead>
           <tr>
             {
-              headers.map(header => <th key={header}>{header}</th>)
+              headers.map((header, i) => <th key={`header--${i}`}>{header}</th>)
             }
           </tr>
         </thead>
         <tfoot>
           <tr>
             {
-              footers.map(footer => <th key={footer}>{footer}</th>)
+              footers.map((footer, i) => <th key={`footer--${i}`}>{footer}</th>)
             }
           </tr>
         </tfoot>

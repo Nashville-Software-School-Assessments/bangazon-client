@@ -1,5 +1,6 @@
 import { useRouter } from 'next/router'
 import { useEffect, useState } from 'react'
+import CardLayout from '../components/card-layout'
 import Layout from '../components/layout'
 import Navbar from '../components/navbar'
 import CartDetail from '../components/order/detail'
@@ -39,26 +40,13 @@ export default function Cart() {
         paymentTypes={paymentTypes}
         completeOrder={completeOrder}
       />
-      <div className="columns is-centered is-vcentered">
-        <div className="column is-6">
-          <div className="card">
-            <header className="card-header">
-              <h3 className="card-header-title">
-                Your Current Order
-              </h3>
-            </header>
-            <div className="card-content">
-              <div className="content">
-                <CartDetail cart={cart} removeProduct={removeProduct}/>
-              </div>
-            </div>
-            <footer className="card-footer">
-              <a className="card-footer-item" onClick={() => setShowCompleteForm(true)}>Complete Order</a>
-              <a className="card-footer-item">Delete Order</a>
-            </footer>
-          </div>
-        </div>
-      </div>
+      <CardLayout title="Your Current Order">
+        <CartDetail cart={cart} removeProduct={removeProduct} />
+        <>
+          <a className="card-footer-item" onClick={() => setShowCompleteForm(true)}>Complete Order</a>
+          <a className="card-footer-item">Delete Order</a>
+        </>
+      </CardLayout>
     </>
   )
 }

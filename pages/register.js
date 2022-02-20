@@ -4,16 +4,21 @@ import { useRef } from 'react'
 import { Input } from '../components/form-elements/input'
 import Layout from '../components/layout'
 import Navbar from '../components/navbar'
+import { useAppContext } from '../context/state'
 import { register } from '../data/auth'
 
 export default function Register() {
+  const {setToken} = useAppContext()
+
   const firstName = useRef('')
   const lastName = useRef('')
   const username = useRef('')
   const password = useRef('')
   const router = useRouter()
 
-  const submit = () => {
+  const submit = (e) => {
+    e.preventDefault()
+
     const user = {
       username: username.current.value,
       password: password.current.value,
@@ -22,8 +27,10 @@ export default function Register() {
     }
 
     register(user).then((res) => {
-      localStorage.setItem('token', res.token)
-      router.push('/')
+      if (res.token) {
+        setToken(res.token)
+        router.push('/')
+      }
     })
   }
 

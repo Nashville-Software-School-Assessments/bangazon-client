@@ -1,14 +1,16 @@
 import Link from 'next/link'
 import { useEffect, useState } from 'react'
+import { useAppContext } from '../context/state'
 
 export default function Navbar() {
+  const {token, profile} = useAppContext()
+
   const [isLoggedIn, setIsLoggedIn] = useState(false)
   useEffect(() => {
-    const token = localStorage.getItem('token')
     if (token) {
       setIsLoggedIn(true)
     }
-  }, [])
+  }, [token])
 
   const getLoggedInButtons = () => {
     return (

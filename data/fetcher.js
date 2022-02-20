@@ -1,8 +1,8 @@
 const baseUrl = 'http://localhost:8000'
 const checkError = (res) => {
-  if (!res.ok && res.status === 401) {
-    throw Error(res.statusText);
-  }
+  // if (!res.ok && res.status === 401) {
+    // throw Error(res.statusText);
+  // }
   return res
 }
 

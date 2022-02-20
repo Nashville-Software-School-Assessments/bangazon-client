@@ -1,14 +1,15 @@
 import Head from 'next/head'
-import { useEffect } from 'react'
-// import styles from './layout.module.css'
+import { AppWrapper } from '../context/state'
 
 export default function Layout({ children }) {
   return (
-    <>
-      <Head>
-        <title>Bangazon</title>
-      </Head>
-      <main className="container">{children}</main>
-    </>
+    <AppWrapper>
+      <>
+        <Head>
+          <title>Bangazon</title>
+        </Head>
+        <main className="container">{children}</main>
+      </>
+    </AppWrapper>
   )
 }

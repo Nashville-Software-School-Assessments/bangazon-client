@@ -4,7 +4,7 @@ import { useRef } from 'react'
 import { Input } from '../components/form-elements/input'
 import Layout from '../components/layout'
 import Navbar from '../components/navbar'
-import { fetchWithResponse } from '../data/fetcher'
+import { register } from '../data/auth'
 
 export default function Register() {
   const firstName = useRef('')
@@ -13,22 +13,15 @@ export default function Register() {
   const password = useRef('')
   const router = useRouter()
 
-  const submit = (event) => {
-    event.preventDefault()
-    const body = {
+  const submit = () => {
+    const user = {
       username: username.current.value,
       password: password.current.value,
       first_name: firstName.current.value,
       last_name: lastName.current.value
     }
 
-    fetchWithResponse('api/register', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify(body)
-    }).then((res) => {
+    register(user).then((res) => {
       localStorage.setItem('token', res.token)
       router.push('/')
     })

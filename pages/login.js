@@ -4,27 +4,20 @@ import { useRef } from 'react'
 import { Input } from '../components/form-elements/input'
 import Layout from '../components/layout'
 import Navbar from '../components/navbar'
-import { fetchWithResponse } from '../data/fetcher'
+import { login } from '../data/auth'
 
 export default function Login() {
   const username = useRef('')
   const password = useRef('')
   const router = useRouter()
 
-  const submit = (event) => {
-    event.preventDefault()
-    const body = {
+  const submit = () => {
+    const user = {
       username: username.current.value,
       password: password.current.value,
     }
 
-    fetchWithResponse('api/login', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify(body)
-    }).then((res) => {
+    login(user).then((res) => {
       localStorage.setItem('token', res.token)
       router.push('/')
     })

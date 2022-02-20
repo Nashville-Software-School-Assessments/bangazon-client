@@ -68,7 +68,6 @@ export default function Filter({ productCount, onSearch }) {
   }
 
   const filter = () => {
-    console.log(refEls.direction)
     const newQuery = ""
     for (let refEl in refEls) {
       newQuery += buildQuery(refEl, refEls[refEl].current.value)

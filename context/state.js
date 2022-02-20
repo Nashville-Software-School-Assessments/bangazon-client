@@ -4,7 +4,6 @@ import { getUserProfile } from '../data/auth';
 const AppContext = createContext();
 
 export function AppWrapper({ children }) {
-  console.log(children)
   const [profile, setProfile] = useState({})
   const [token, setToken] = useState("")
 

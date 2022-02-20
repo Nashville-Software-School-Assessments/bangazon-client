@@ -1,13 +1,15 @@
 const baseUrl = 'http://localhost:8000'
 const checkError = (res) => {
-  // if (!res.ok && res.status === 401) {
-    // throw Error(res.statusText);
-  // }
+  if (!res.ok) {
+    throw Error(res.status);
+  }
   return res
 }
 
-const catchError = () => {
-  window.location.href = "/login"
+const catchError = (err) => {
+  if (err === 401) {
+    window.location.href = "/login"
+  }
 }
 
 export const fetchWithResponse = (url, options) => fetch(`${baseUrl}/${url}`, options)

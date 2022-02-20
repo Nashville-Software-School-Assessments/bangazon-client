@@ -15,3 +15,14 @@ export function getStoreById(id) {
     }
   })
 }
+
+export function addStore(store) {
+  return fetchWithResponse(`api/stores`, {
+    method: 'POST',
+    headers: {
+      Authorization: `Token ${localStorage.getItem('token')}`,
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify(store)
+  })
+}

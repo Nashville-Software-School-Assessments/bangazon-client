@@ -23,6 +23,12 @@ export default function Navbar() {
         <div className="navbar-dropdown is-right">
           <Link href="/cart"><a className="navbar-item">Cart</a></Link>
           <Link href="/payments"><a className="navbar-item">Payment Methods</a></Link>
+          {
+            profile.store ?
+            <Link href="/stores/my-store"><a className="navbar-item">View Your Store</a></Link>
+            :
+            <Link href="/stores/new"><a className="navbar-item">Interested in selling?</a></Link>
+          }
           <hr className="navbar-divider"></hr>
           <a className="navbar-item" onClick={
             () => {

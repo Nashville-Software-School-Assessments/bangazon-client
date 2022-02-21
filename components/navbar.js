@@ -25,7 +25,7 @@ export default function Navbar() {
           <Link href="/payments"><a className="navbar-item">Payment Methods</a></Link>
           {
             profile.store ?
-            <Link href="/stores/my-store"><a className="navbar-item">View Your Store</a></Link>
+            <Link href={`/stores/${profile.store.id}`}><a className="navbar-item">View Your Store</a></Link>
             :
             <Link href="/stores/new"><a className="navbar-item">Interested in selling?</a></Link>
           }

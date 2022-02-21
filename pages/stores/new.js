@@ -5,8 +5,11 @@ import Layout from '../../components/layout'
 import Navbar from '../../components/navbar'
 import CardLayout from '../../components/card-layout'
 import { addStore } from '../../data/stores'
+import { useAppContext } from '../../context/state'
 
 export default function NewStore() {
+  const {setProfile, profile} = useAppContext()
+
   const nameEl = useRef()
   const descriptionEl = useRef()
   const router = useRouter()
@@ -29,7 +32,13 @@ export default function NewStore() {
             addStore({
               name: nameEl.current.value,
               description: descriptionEl.current.value
-            }).then(() => router.push('/stores/my-store'))
+            }).then((res) => {
+              setProfile({
+                ...profile,
+                store: res
+              })
+              router.push(`/stores/${res.id}`)
+            })
           }}>Create Store</a>
           <a className="card-footer-item">Cancel</a>
         </>

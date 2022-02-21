@@ -1,4 +1,4 @@
-export default function Detail({ store }) {
+export default function Detail({ store, isOwner }) {
   return (
     <section className="hero is-primary mb-3">
       <div className="hero-head">
@@ -6,9 +6,21 @@ export default function Detail({ store }) {
           <div className="navbar-menu">
             <div className="navbar-end">
               <span className="navbar-item">
-                <a className="button is-primary is-inverted">
-                  Subscribe to Store
-                </a>
+                {
+                  isOwner ?
+                    <div className="buttons">
+                      <a className="button is-primary is-inverted">
+                        Edit Store
+                      </a>
+                      <a className="button is-primary is-inverted">
+                        Add a Product
+                      </a>
+                    </div>
+                    :
+                    <a className="button is-primary is-inverted">
+                      Subscribe to Store
+                    </a>
+                }
               </span>
             </div>
           </div>

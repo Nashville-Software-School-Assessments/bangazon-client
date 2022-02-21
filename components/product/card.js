@@ -1,6 +1,6 @@
 import Link from 'next/link'
 
-export function ProductCard({ product }) {
+export function ProductCard({ product, isOwner = false }) {
   return (
     <div className="column is-one-quarter">
       <div className="card">
@@ -19,6 +19,16 @@ export function ProductCard({ product }) {
             {product.description}
           </div>
         </div>
+        {
+          isOwner ?
+            <footer className="card-footer">
+              <a href="#" className="card-footer-item">Edit</a>
+              <a href="#" className="card-footer-item">Delete</a>
+            </footer>
+            :
+            <></>
+        }
+
       </div>
     </div>
   )

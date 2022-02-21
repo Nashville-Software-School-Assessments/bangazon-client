@@ -1,3 +1,5 @@
+import Link from 'next/link'
+
 export default function Detail({ store, isOwner }) {
   return (
     <section className="hero is-primary mb-3">
@@ -9,9 +11,11 @@ export default function Detail({ store, isOwner }) {
                 {
                   isOwner ?
                     <div className="buttons">
-                      <a className="button is-primary is-inverted">
-                        Edit Store
-                      </a>
+                      <Link href={`/stores/${store.id}/edit`}>
+                        <a className="button is-primary is-inverted">
+                          Edit Store
+                        </a>
+                      </Link>
                       <a className="button is-primary is-inverted">
                         Add a Product
                       </a>

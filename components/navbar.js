@@ -3,7 +3,7 @@ import { useEffect, useState } from 'react'
 import { useAppContext } from '../context/state'
 
 export default function Navbar() {
-  const {token, profile} = useAppContext()
+  const { token, profile } = useAppContext()
 
   const [isLoggedIn, setIsLoggedIn] = useState(false)
   useEffect(() => {
@@ -25,9 +25,12 @@ export default function Navbar() {
           <Link href="/payments"><a className="navbar-item">Payment Methods</a></Link>
           {
             profile.store ?
-            <Link href={`/stores/${profile.store.id}`}><a className="navbar-item">View Your Store</a></Link>
-            :
-            <Link href="/stores/new"><a className="navbar-item">Interested in selling?</a></Link>
+              <>
+                <Link href={`/stores/${profile.store.id}`}><a className="navbar-item">View Your Store</a></Link>
+                <Link href="/products/new"><a className="navbar-item">Add a new Product</a></Link>
+              </>
+              :
+              <Link href="/stores/new"><a className="navbar-item">Interested in selling?</a></Link>
           }
           <hr className="navbar-divider"></hr>
           <a className="navbar-item" onClick={
@@ -64,7 +67,7 @@ export default function Navbar() {
 
   return (
 
-    <nav className="navbar mb-3 is-warning px-5 is-fixed-top" role="navigation" aria-label="main navigation">
+    <nav className="navbar mb-3 is-warning px-5 is-fixed-top is-top" role="navigation" aria-label="main navigation">
       <div className="navbar-brand">
         <Link href="/"><a className="navbar-item">Bangazon Unlimited</a></Link>
 

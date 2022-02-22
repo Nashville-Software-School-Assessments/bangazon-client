@@ -4,3 +4,8 @@
 body {
     padding-top: 4.5rem;
 }
+
+.navbar.is-top {
+    z-index: 35;
+}
+

@@ -58,3 +58,14 @@ export function rateProduct(productId, rating) {
     body: JSON.stringify(rating)
   })
 }
+
+export function addProduct(product) {
+  return fetchWithResponse(`api/products`, {
+    method: 'POST',
+    headers: {
+      Authorization: `Token ${localStorage.getItem('token')}`,
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify(product)
+  })
+}

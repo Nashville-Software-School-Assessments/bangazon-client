@@ -1,5 +1,4 @@
-import { useRouter } from 'next/router'
-import { Input } from '../../components/form-elements/input'
+import { Input } from '../../components/form-elements'
 import CardLayout from '../card-layout'
 
 export default function StoreForm({ nameEl, descriptionEl, saveEvent, title, router, children }) {

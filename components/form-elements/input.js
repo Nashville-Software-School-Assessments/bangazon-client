@@ -1,4 +1,4 @@
-export function Input({ id, type="text", placeholder="", refEl=undefined, label=undefined, onChangeEvent, addlClass="", extra="" }) {
+export function Input({ id, type="text", placeholder="", refEl=undefined, label=undefined, onChangeEvent, addlClass="", children }) {
   return (
     <div className={`field ${addlClass}`}>
       {label && <label className="label">{label}</label>}
@@ -12,7 +12,7 @@ export function Input({ id, type="text", placeholder="", refEl=undefined, label=
           onChange={onChangeEvent}
         ></input>
       </div>
-      {extra}
+      {children}
     </div>
   )
 }

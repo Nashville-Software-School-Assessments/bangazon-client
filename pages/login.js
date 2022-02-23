@@ -1,7 +1,7 @@
 import Link from 'next/link'
 import { useRouter } from 'next/router'
 import { useRef } from 'react'
-import { Input } from '../components/form-elements/input'
+import { Input } from '../components/form-elements'
 import Layout from '../components/layout'
 import Navbar from '../components/navbar'
 import { useAppContext } from '../context/state'

@@ -1,5 +1,5 @@
 import { useRef } from "react"
-import { Input } from "../form-elements/input"
+import { Input } from "../form-elements"
 import Modal from "../modal"
 
 export default function AddPaymentModal({ showModal, setShowModal, addNewPayment }) {

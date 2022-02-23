@@ -1,7 +1,6 @@
 import { useEffect, useRef, useState } from 'react'
 import { getCategories } from '../data/products'
-import { Input } from './form-elements/input'
-import { Select } from './form-elements/select'
+import { Input, Select } from './form-elements'
 
 export default function Filter({ productCount, onSearch }) {
   const refEls = {

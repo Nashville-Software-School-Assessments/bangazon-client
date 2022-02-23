@@ -1,14 +1,13 @@
 import { useRouter } from 'next/router'
-import { useEffect, useState, useRef } from 'react'
+import { useRef } from 'react'
 import Layout from '../../components/layout'
 import Navbar from '../../components/navbar'
-import { Detail } from '../../components/product/detail'
-import { Ratings } from '../../components/rating/detail'
-import { addProduct, getProductById } from '../../data/products'
+import { addProduct } from '../../data/products'
 import ProductForm from '../../components/product/form'
 export default function NewProduct() {
   const formEl = useRef()
   const router = useRouter()
+
   const saveProduct = () => {
     const { name, description, price, category, location, quantity  } = formEl.current
     const product = {
@@ -21,6 +20,7 @@ export default function NewProduct() {
     }
     addProduct(product).then((res) => router.push(`/products/${res.id}`))
   }
+
   return (
     <ProductForm
       formEl={formEl}

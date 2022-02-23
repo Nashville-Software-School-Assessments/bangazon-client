@@ -22,7 +22,7 @@ export function ProductCard({ product, isOwner = false }) {
         {
           isOwner ?
             <footer className="card-footer">
-              <a href="#" className="card-footer-item">Edit</a>
+              <Link href={`/products/${product.id}/edit`}><a className="card-footer-item">Edit</a></Link>
               <a href="#" className="card-footer-item">Delete</a>
             </footer>
             :

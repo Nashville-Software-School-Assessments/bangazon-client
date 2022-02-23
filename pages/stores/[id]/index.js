@@ -14,8 +14,6 @@ export default function StoreDetail() {
   const [store, setStore] = useState({})
   const [isOwner, setIsOwner] = useState(false)
 
-
-
   useEffect(() => {
     if (id) {
       getStoreById(id).then(storeData => setStore(storeData))
@@ -24,7 +22,6 @@ export default function StoreDetail() {
       setIsOwner(true)
     }
   }, [id, profile])
-
 
   return (
     <>

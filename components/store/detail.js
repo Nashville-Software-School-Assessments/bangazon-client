@@ -16,9 +16,11 @@ export default function Detail({ store, isOwner }) {
                           Edit Store
                         </a>
                       </Link>
-                      <a className="button is-primary is-inverted">
-                        Add a Product
-                      </a>
+                      <Link href="/products/new">
+                        <a className="button is-primary is-inverted">
+                          Add a Product
+                        </a>
+                      </Link>
                     </div>
                     :
                     <a className="button is-primary is-inverted">

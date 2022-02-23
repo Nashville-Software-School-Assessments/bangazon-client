@@ -69,3 +69,14 @@ export function addProduct(product) {
     body: JSON.stringify(product)
   })
 }
+
+export function editProduct(id, product) {
+  return fetchWithoutResponse(`api/products/${id}`, {
+    method: 'PUT',
+    headers: {
+      Authorization: `Token ${localStorage.getItem('token')}`,
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify(product)
+  })
+}

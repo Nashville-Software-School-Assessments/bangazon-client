@@ -48,6 +48,15 @@ export function removeProductFromOrder(id) {
   })
 }
 
+export function deleteProduct(id) {
+  return fetchWithoutResponse(`api/products/${id}`, {
+    method: 'DELETE',
+    headers: {
+      Authorization: `Token ${localStorage.getItem('token')}`
+    }
+  })
+}
+
 export function rateProduct(productId, rating) {
   return fetchWithResponse(`api/products/${productId}/rate-product`, {
     method: 'POST',

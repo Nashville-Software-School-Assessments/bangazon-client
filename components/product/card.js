@@ -1,6 +1,6 @@
 import Link from 'next/link'
 
-export function ProductCard({ product, isOwner = false }) {
+export function ProductCard({ product, removeProduct, isOwner = false }) {
   return (
     <div className="column is-one-quarter">
       <div className="card">
@@ -23,7 +23,7 @@ export function ProductCard({ product, isOwner = false }) {
           isOwner ?
             <footer className="card-footer">
               <Link href={`/products/${product.id}/edit`}><a className="card-footer-item">Edit</a></Link>
-              <a href="#" className="card-footer-item">Delete</a>
+              <a onClick={() => removeProduct(product.id)} className="card-footer-item">Delete</a>
             </footer>
             :
             <></>

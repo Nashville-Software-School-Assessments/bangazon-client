@@ -5,6 +5,7 @@ import Navbar from '../../../components/navbar'
 import { ProductCard } from '../../../components/product/card'
 import Detail from '../../../components/store/detail'
 import { useAppContext } from '../../../context/state'
+import { deleteProduct } from '../../../data/products'
 import { getStoreById } from '../../../data/stores'
 
 export default function StoreDetail() {
@@ -23,18 +24,29 @@ export default function StoreDetail() {
     }
   }, [id, profile])
 
+  const removeProduct = (productId) => {
+    deleteProduct(productId).then(() => getStoreById(id).then(storeData => setStore(storeData)))
+  }
+
   return (
     <>
-      <Detail store={store} isOwner={isOwner}/>
+      <Detail store={store} isOwner={isOwner} />
       <div className="columns is-multiline">
         {
-          store.products?.map(product => <ProductCard product={product} key={product.id} isOwner={isOwner}/>)
+          store.products?.map(product => (
+            <ProductCard
+              product={product}
+              key={product.id}
+              isOwner={isOwner}
+              removeProduct={removeProduct}
+            />
+          ))
         }
         {
           store.products?.length === 0 ?
-          <p>There's no products yet</p>
-          :
-          <></>
+            <p>There's no products yet</p>
+            :
+            <></>
         }
       </div>
     </>

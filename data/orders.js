@@ -8,6 +8,14 @@ export function getCart() {
   })
 }
 
+export function getOrders() {
+  return fetchWithResponse('api/orders', {
+    headers: {
+      Authorization: `Token ${localStorage.getItem('token')}`
+    }
+  })
+}
+
 export function completeCurrentOrder(orderId, paymentTypeId) {
   return fetchWithResponse(`api/orders/${orderId}/complete`, {
     method: 'PUT',

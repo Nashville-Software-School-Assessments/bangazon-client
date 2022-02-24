@@ -15,6 +15,7 @@ export default function ProductDetail() {
     getProductById(id).then(productData => setProduct(productData))
   }
 
+
   useEffect(() => {
     if (id) {
       refresh()

@@ -89,3 +89,14 @@ export function editProduct(id, product) {
     body: JSON.stringify(product)
   })
 }
+
+export function recommendProduct(id, username) {
+  return fetchWithResponse(`api/products/${id}/recommend`, {
+    method: 'POST',
+    headers: {
+      Authorization: `Token ${localStorage.getItem('token')}`,
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify({username})
+  })
+}

@@ -7,8 +7,11 @@ const checkError = (res) => {
 }
 
 const catchError = (err) => {
-  if (err === 401) {
+  if (err.message === '401') {
     window.location.href = "/login"
+  }
+  if (err.message === '404') {
+    return err
   }
 }
 

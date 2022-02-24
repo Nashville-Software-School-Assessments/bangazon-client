@@ -22,6 +22,7 @@ export default function Navbar() {
         </a>
         <div className="navbar-dropdown is-right">
           <Link href="/cart"><a className="navbar-item">Cart</a></Link>
+          <Link href="/my-orders"><a className="navbar-item">My Orders</a></Link>
           <Link href="/payments"><a className="navbar-item">Payment Methods</a></Link>
           {
             profile.store ?

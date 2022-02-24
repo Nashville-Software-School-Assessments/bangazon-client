@@ -25,11 +25,9 @@ export default function Orders() {
           {
             orders.map((order) => (
               <tr key={order.id}>
-                <td>{order.name}</td>
-                <td>{order.price}</td>
-                <td>
-
-                </td>
+                <td>{order.completed_on}</td>
+                <td>${order.total}</td>
+                <td>{order.payment_type?.obscured_num}</td>
               </tr>
             ))
           }

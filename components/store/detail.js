@@ -1,6 +1,45 @@
 import Link from 'next/link'
 
-export default function Detail({ store, isOwner }) {
+export default function Detail({ store, isOwner, favorite, unfavorite }) {
+  const ownerButtons = () => {
+    return (
+      <div className="buttons">
+        <Link href={`/stores/${store.id}/edit`}>
+          <a className="button is-primary is-inverted">
+            Edit Store
+          </a>
+        </Link>
+        <Link href="/products/new">
+          <a className="button is-primary is-inverted">
+            Add a Product
+          </a>
+        </Link>
+      </div>
+    )
+  }
+  const userButtons = () => {
+    return (
+      <>
+        {
+          store.is_favorite ?
+            <button className="button is-primary is-inverted" onClick={unfavorite}>
+              <span className="icon is-small">
+                <i className="fas fa-heart-broken"></i>
+              </span>
+              <span>Unfavorite Store</span>
+            </button>
+            :
+            <button className="button is-primary is-inverted" onClick={favorite}>
+              <span className="icon is-small">
+                <i className="fas fa-heart"></i>
+              </span>
+              <span>Favorite Store</span>
+            </button>
+        }
+      </>
+    )
+  }
+
   return (
     <section className="hero is-primary mb-3">
       <div className="hero-head">
@@ -10,22 +49,9 @@ export default function Detail({ store, isOwner }) {
               <span className="navbar-item">
                 {
                   isOwner ?
-                    <div className="buttons">
-                      <Link href={`/stores/${store.id}/edit`}>
-                        <a className="button is-primary is-inverted">
-                          Edit Store
-                        </a>
-                      </Link>
-                      <Link href="/products/new">
-                        <a className="button is-primary is-inverted">
-                          Add a Product
-                        </a>
-                      </Link>
-                    </div>
+                    ownerButtons()
                     :
-                    <a className="button is-primary is-inverted">
-                      Subscribe to Store
-                    </a>
+                    userButtons()
                 }
               </span>
             </div>

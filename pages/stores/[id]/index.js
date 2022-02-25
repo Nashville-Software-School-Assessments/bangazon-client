@@ -28,9 +28,23 @@ export default function StoreDetail() {
     deleteProduct(productId).then(() => getStoreById(id).then(storeData => setStore(storeData)))
   }
 
+  const favorite = () => {
+    setStore({
+      ...store,
+      is_favorite: true
+    })
+  }
+
+  const unfavorite = () => {
+    setStore({
+      ...store,
+      is_favorite: false
+    })
+  }
+
   return (
     <>
-      <Detail store={store} isOwner={isOwner} />
+      <Detail store={store} isOwner={isOwner} favorite={favorite} unfavorite={unfavorite} />
       <div className="columns is-multiline">
         {
           store.products?.map(product => (

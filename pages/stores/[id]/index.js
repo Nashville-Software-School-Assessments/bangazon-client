@@ -6,7 +6,7 @@ import { ProductCard } from '../../../components/product/card'
 import Detail from '../../../components/store/detail'
 import { useAppContext } from '../../../context/state'
 import { deleteProduct } from '../../../data/products'
-import { getStoreById } from '../../../data/stores'
+import { favoriteStore, getStoreById, unfavoriteStore } from '../../../data/stores'
 
 export default function StoreDetail() {
   const { profile } = useAppContext()
@@ -24,22 +24,18 @@ export default function StoreDetail() {
     }
   }, [id, profile])
 
+  const refresh = () => getStoreById(id).then(storeData => setStore(storeData))
+
   const removeProduct = (productId) => {
-    deleteProduct(productId).then(() => getStoreById(id).then(storeData => setStore(storeData)))
+    deleteProduct(productId).then(refresh)
   }
 
   const favorite = () => {
-    setStore({
-      ...store,
-      is_favorite: true
-    })
+    favoriteStore(id).then(refresh)
   }
 
   const unfavorite = () => {
-    setStore({
-      ...store,
-      is_favorite: false
-    })
+    unfavoriteStore(id).then(refresh)
   }
 
   return (

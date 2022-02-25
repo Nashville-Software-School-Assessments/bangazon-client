@@ -22,3 +22,4 @@ export const fetchWithResponse = (url, options) => fetch(`${baseUrl}/${url}`, op
 
 export const fetchWithoutResponse = (url, options) => fetch(`${baseUrl}/${url}`, options)
   .then(checkError)
+  .catch(catchError)

@@ -37,3 +37,23 @@ export function editStore(store) {
     body: JSON.stringify(store)
   })
 }
+
+export function favoriteStore(storeId) {
+  return fetchWithoutResponse(`api/stores/${storeId}/favorite`, {
+    method: 'POST',
+    headers: {
+      Authorization: `Token ${localStorage.getItem('token')}`,
+      'Content-Type': 'application/json'
+    },
+  })
+}
+
+export function unfavoriteStore(storeId) {
+  return fetchWithoutResponse(`api/stores/${storeId}/unfavorite`, {
+    method: 'DELETE',
+    headers: {
+      Authorization: `Token ${localStorage.getItem('token')}`,
+      'Content-Type': 'application/json'
+    },
+  })
+}

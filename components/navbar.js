@@ -1,16 +1,23 @@
 import Link from 'next/link'
-import { useEffect, useState } from 'react'
+import { useEffect, useState, useRef } from 'react'
 import { useAppContext } from '../context/state'
 
 export default function Navbar() {
   const { token, profile } = useAppContext()
-
+  const hamburger = useRef()
+  const navbar = useRef()
   const [isLoggedIn, setIsLoggedIn] = useState(false)
+
   useEffect(() => {
     if (token) {
       setIsLoggedIn(true)
     }
   }, [token])
+
+  const showMobileNavbar = () => {
+    hamburger.current.classList.toggle('is-active')
+    navbar.current.classList.toggle('is-active')
+  }
 
   const getLoggedInButtons = () => {
     return (
@@ -72,14 +79,14 @@ export default function Navbar() {
       <div className="navbar-brand">
         <Link href="/"><a className="navbar-item">Bangazon Unlimited</a></Link>
 
-        <a role="button" className="navbar-burger" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">
+        <a role="button" className="navbar-burger" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample" ref={hamburger} onClick={showMobileNavbar}>
           <span aria-hidden="true"></span>
           <span aria-hidden="true"></span>
           <span aria-hidden="true"></span>
         </a>
       </div>
 
-      <div className="navbar-menu">
+      <div className="navbar-menu" ref={navbar}>
         <div className="navbar-start">
           <Link href="/products"><a className="navbar-item">Products</a></Link>
           <Link href="/stores"><a className="navbar-item">Stores</a></Link>

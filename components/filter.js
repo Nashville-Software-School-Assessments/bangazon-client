@@ -2,7 +2,7 @@ import { useEffect, useRef, useState } from 'react'
 import { getCategories } from '../data/products'
 import { Input, Select } from './form-elements'
 
-export default function Filter({ productCount, onSearch }) {
+export default function Filter({ productCount, onSearch, locations }) {
   const refEls = {
     location: useRef(),
     category: useRef(),
@@ -21,8 +21,11 @@ export default function Filter({ productCount, onSearch }) {
       if (ref === 'direction') {
         refEls[ref].current.checked = false
         setDirection('asc')
-      } else {
-        refEls[ref].current.value = ''
+      } else if (["min_price", "name"].includes(ref)) {
+        refEls[ref].current.value = ""
+      }
+      else {
+        refEls[ref].current.value = 0
       }
     }
     onSearch('')
@@ -119,7 +122,7 @@ export default function Filter({ productCount, onSearch }) {
                 <div className="dropdown-item">
                   <Select
                     refEl={refEls.location}
-                    options={[{ id: 1, name: 'Tennessee' }]}
+                    options={locations}
                     title="Filter by Location"
                     addlClass="is-fullwidth"
                   />

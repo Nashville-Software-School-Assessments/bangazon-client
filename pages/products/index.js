@@ -8,11 +8,17 @@ import { getProducts } from '../../data/products'
 export default function Products() {
   const [products, setProducts] = useState([])
   const [isLoading, setIsLoading] = useState(true)
+  const [locations, setLocations] = useState([])
 
   useEffect(() => {
     getProducts().then(data => {
       setProducts(data)
       setIsLoading(false)
+      const locationData = [...new Set(data.map(product => product.location))]
+      setLocations(locationData.map(location => ({
+        id: location,
+        name: location
+      })))
     })
   }, [])
 
@@ -23,7 +29,7 @@ export default function Products() {
   if (isLoading) return <p>Loading...</p>
   return (
     <>
-      <Filter productCount={products.length} onSearch={searchProducts} />
+      <Filter productCount={products.length} onSearch={searchProducts} locations={locations} />
 
       <div className="columns is-multiline">
         {products.map(product => (

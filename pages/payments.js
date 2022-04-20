@@ -5,7 +5,7 @@ import Layout from '../components/layout'
 import Navbar from '../components/navbar'
 import AddPaymentModal from '../components/payments/payment-modal'
 import Table from '../components/table'
-import { addPaymentType, getPaymentTypes } from '../data/payment-types'
+import { addPaymentType, getPaymentTypes, deletePaymentType } from '../data/payment-types'
 
 export default function Payments() {
   const headers = ['Merchant Name', 'Card Number', '']
@@ -20,6 +20,12 @@ export default function Payments() {
   const addNewPayment = (payment) => {
     addPaymentType(payment).then(() => {
       setShowModal(false)
+      refresh()
+    })
+  }
+
+  const removePayment = (paymentId) => {
+    deletePaymentType(paymentId).then(() => {
       refresh()
     })
   }

@@ -1,4 +1,4 @@
-import { fetchWithResponse } from "./fetcher";
+import { fetchWithResponse, fetchWithoutResponse } from "./fetcher";
 
 export function getPaymentTypes() {
   return fetchWithResponse('api/payment-types', {
@@ -16,5 +16,14 @@ export function addPaymentType(paymentType) {
       'Content-Type': 'application/json'
     },
     body: JSON.stringify(paymentType)
+  })
+}
+
+export function deletePaymentType(id) {
+  return fetchWithoutResponse(`api/payment-types/${id}`, {
+    method: 'DELETE',
+    headers: {
+      Authorization: `Token ${localStorage.getItem('token')}`
+    }
   })
 }

@@ -14,7 +14,11 @@ export default function EditStore() {
 
   useEffect(() => {
     if (id) {
-      getStoreById(id).then(storeData => setStore(storeData))
+      getStoreById(id).then(storeData => {
+        if (storeData) {
+          setStore(storeData)
+        }
+      })
     }
   }, [id])
 

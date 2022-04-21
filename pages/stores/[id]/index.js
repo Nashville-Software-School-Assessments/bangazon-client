@@ -17,14 +17,18 @@ export default function StoreDetail() {
 
   useEffect(() => {
     if (id) {
-      getStoreById(id).then(storeData => setStore(storeData))
+      refresh()
     }
     if (parseInt(id) === profile.store?.id) {
       setIsOwner(true)
     }
   }, [id, profile])
 
-  const refresh = () => getStoreById(id).then(storeData => setStore(storeData))
+  const refresh = () => getStoreById(id).then(storeData => {
+    if (storeData) {
+      setStore(storeData)
+    }
+  })
 
   const removeProduct = (productId) => {
     deleteProduct(productId).then(refresh)

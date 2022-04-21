@@ -1,21 +1,20 @@
-import { useRouter } from 'next/router'
 import { useEffect, useState } from 'react'
 import CardLayout from '../components/card-layout'
 import Layout from '../components/layout'
 import Navbar from '../components/navbar'
-import OrdersDetail from '../components/order/detail'
-import CompleteFormModal from '../components/order/form-modal'
 import Table from '../components/table'
-import { completeCurrentOrder, getOrders } from '../data/orders'
-import { getPaymentTypes } from '../data/payment-types'
-import { removeProductFromOrder } from '../data/products'
+import { getOrders } from '../data/orders'
 
 export default function Orders() {
   const [orders, setOrders] = useState([])
   const headers = ['Order Date', 'Total', 'Payment Method']
 
   useEffect(() => {
-    getOrders().then(ordersData => setOrders(ordersData))
+    getOrders().then(ordersData => {
+      if (ordersData) {
+        setOrders(ordersData)
+      }
+    })
   }, [])
 
   return (

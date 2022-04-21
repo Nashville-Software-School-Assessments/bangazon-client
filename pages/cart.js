@@ -16,12 +16,20 @@ export default function Cart() {
   const router = useRouter()
 
   const refresh = () => {
-    getCart().then(cartData => setCart(cartData))
+    getCart().then(cartData => {
+      if (cartData) {
+        setCart(cartData)
+      }
+    })
   }
 
   useEffect(() => {
     refresh()
-    getPaymentTypes().then(paymentData => setPaymentTypes(paymentData))
+    getPaymentTypes().then(paymentData => {
+      if (paymentData) {
+        setPaymentTypes(paymentData)
+      }
+    })
   }, [])
 
   const completeOrder = (paymentTypeId) => {

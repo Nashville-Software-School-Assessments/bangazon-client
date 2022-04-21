@@ -12,18 +12,24 @@ export default function Products() {
 
   useEffect(() => {
     getProducts().then(data => {
-      setProducts(data)
-      setIsLoading(false)
-      const locationData = [...new Set(data.map(product => product.location))]
-      setLocations(locationData.map(location => ({
-        id: location,
-        name: location
-      })))
+      if (data) {
+        setProducts(data)
+        setIsLoading(false)
+        const locationData = [...new Set(data.map(product => product.location))]
+        setLocations(locationData.map(location => ({
+          id: location,
+          name: location
+        })))
+      }
     })
   }, [])
 
   const searchProducts = (event) => {
-    getProducts(event).then(productsData => setProducts(productsData))
+    getProducts(event).then(productsData => {
+      if (productsData) {
+        setProducts(productsData)
+      }
+    })
   }
 
   if (isLoading) return <p>Loading...</p>

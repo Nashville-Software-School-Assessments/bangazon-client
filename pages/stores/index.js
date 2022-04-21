@@ -7,9 +7,15 @@ import { getStores } from '../../data/stores'
 
 export default function Stores() {
   const [stores, setStores] = useState([])
+
   useEffect(() => {
-    getStores().then(setStores)
+    getStores().then(data => {
+      if (data) {
+        setStores(data)
+      }
+    })
   }, [])
+
   return (
     <>
       <h1 className="title">Stores</h1>

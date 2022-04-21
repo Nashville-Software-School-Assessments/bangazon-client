@@ -6,6 +6,15 @@ const checkError = (res) => {
   return res
 }
 
+const checkErrorJson = (res) => {
+  if (!res.ok) {
+    throw Error(res.status);
+  } else {
+    return res.json()
+  }
+}
+
+
 const catchError = (err) => {
   if (err.message === '401') {
     window.location.href = "/login"
@@ -16,8 +25,7 @@ const catchError = (err) => {
 }
 
 export const fetchWithResponse = (url, options) => fetch(`${baseUrl}/${url}`, options)
-  .then(checkError)
-  .then(res => res.json())
+  .then(checkErrorJson)
   .catch(catchError)
 
 export const fetchWithoutResponse = (url, options) => fetch(`${baseUrl}/${url}`, options)

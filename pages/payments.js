@@ -11,8 +11,12 @@ export default function Payments() {
   const headers = ['Merchant Name', 'Card Number', '']
   const [payments, setPayments] = useState([])
   const [showModal, setShowModal] = useState(false)
-  const refresh = () => getPaymentTypes().then(setPayments)
-  
+  const refresh = () => getPaymentTypes().then((data) => {
+    if (data) {
+      setPayments(data)
+    }
+  })
+
   useEffect(() => {
     refresh()
   }, [])

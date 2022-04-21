@@ -16,10 +16,12 @@ export default function NewProduct() {
   useEffect(() => {
     if (id && profile) {
       getProductById(id).then(productData => {
-        if (productData.store.id === profile.store?.id) {
-          setProduct(productData)
-        } else {
-          router.back()
+        if (productData) {
+          if (productData.store.id === profile.store?.id) {
+            setProduct(productData)
+          } else {
+            router.back()
+          }
         }
       })
     }

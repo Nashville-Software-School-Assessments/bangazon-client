@@ -4,7 +4,7 @@ import Layout from '../../../components/layout'
 import Navbar from '../../../components/navbar'
 import { Detail } from '../../../components/product/detail'
 import { Ratings } from '../../../components/rating/detail'
-import { getProductById } from '../../../data/products'
+import { getProductById, likeProduct, unLikeProduct } from '../../../data/products'
 
 export default function ProductDetail() {
   const router = useRouter()
@@ -15,6 +15,13 @@ export default function ProductDetail() {
     getProductById(id).then(productData => setProduct(productData))
   }
 
+  const like = () => {
+    likeProduct(id).then(refresh)
+  }
+
+  const unlike = () => {
+    unLikeProduct(id).then(refresh)
+  }
 
   useEffect(() => {
     if (id) {
@@ -25,7 +32,7 @@ export default function ProductDetail() {
   return (
     <div className="columns is-centered">
       <div className="column">
-        <Detail product={product} />
+        <Detail product={product} like={like} unlike={unlike}/>
         <Ratings
           refresh={refresh}
           number_purchased={product.number_purchased}

@@ -4,7 +4,7 @@ import { addProductToOrder, recommendProduct } from "../../data/products"
 import Modal from "../modal"
 import { Input } from "../form-elements"
 
-export function Detail({ product }) {
+export function Detail({ product, like, unlike }) {
   const router = useRouter()
   const usernameEl = useRef()
   const [showModal, setShowModal] = useState(false)
@@ -38,7 +38,7 @@ export function Detail({ product }) {
           }
         </Input>
         <>
-          <button className="button is-success" onClick={recommendProductEvent}>Complete Order</button>
+          <button className="button is-success" onClick={recommendProductEvent}>Recommend Product</button>
           <button className="button" onClick={() => setShowModal(false)}>Cancel</button>
         </>
       </Modal>
@@ -50,17 +50,42 @@ export function Detail({ product }) {
             </figure>
           </article>
         </div>
-        <div className="tile is-parent is-vertical is-align-items-center is-justify-content-center">
+        <div className="tile is-parent is-vertical ">
           <article className="tile is-child">
             <h1 className="title">{product.name} - ${product.price}</h1>
             <p className="subtitle">{product.store?.name}</p>
             <p>{product.description}</p>
             <p>Pick up available in: {product.location}</p>
           </article>
-          <article className="tile is-child">
-            <div className="buttons">
-              <button className="button is-primary" onClick={addToCart}>Add to Cart</button>
-              <button className="button is-primary is-outlined" onClick={() => setShowModal(true)}>Recommend this Product</button>
+          <article className="tile is-child is-align-self-center">
+            <div className="field is-grouped">
+              <p className="control">
+                <button className="button is-primary" onClick={addToCart}>Add to Cart</button>
+              </p>
+              <p className="control">
+                <button
+                  className="button is-danger is-outlined"
+                  onClick={() => setShowModal(true)}
+                >Recommend this Product</button>
+              </p>
+              <p className="control">
+                {
+                  product.is_liked ?
+                    <button className="button is-link is-outlined" onClick={unlike}>
+                      <span className="icon is-small">
+                        <i className="fas fa-heart-broken"></i>
+                      </span>
+                      <span>Unlike Product</span>
+                    </button>
+                    :
+                    <button className="button is-link is-outlined" onClick={like}>
+                      <span className="icon is-small">
+                        <i className="fas fa-heart"></i>
+                      </span>
+                      <span>Like Product</span>
+                    </button>
+                }
+              </p>
             </div>
           </article>
         </div>

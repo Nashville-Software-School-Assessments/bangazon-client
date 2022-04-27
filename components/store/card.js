@@ -1,8 +1,8 @@
 import Link from 'next/link'
 
-export function StoreCard({ store }) {
+export function StoreCard({ store, width= "is-half" }) {
   return (
-    <div className="column is-half">
+    <div className={`column ${width}`}>
       <div className="card">
         <header className="card-header">
           <p className="card-header-title">

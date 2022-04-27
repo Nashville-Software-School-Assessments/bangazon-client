@@ -1,8 +1,8 @@
 import Link from 'next/link'
 
-export function ProductCard({ product, removeProduct, isOwner = false }) {
+export function ProductCard({ product, removeProduct, isOwner = false, width="is-one-quarter" }) {
   return (
-    <div className="column is-one-quarter">
+    <div className={`column ${width}`}>
       <div className="card">
         <div className="card-image">
           <figure className="image is-4by3">

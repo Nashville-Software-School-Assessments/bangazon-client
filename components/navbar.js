@@ -31,6 +31,7 @@ export default function Navbar() {
           <Link href="/cart"><a className="navbar-item">Cart</a></Link>
           <Link href="/my-orders"><a className="navbar-item">My Orders</a></Link>
           <Link href="/payments"><a className="navbar-item">Payment Methods</a></Link>
+          <Link href="/profile"><a className="navbar-item">Profile</a></Link>
           {
             profile.store ?
               <>

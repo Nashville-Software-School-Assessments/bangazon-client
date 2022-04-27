@@ -10,17 +10,13 @@ import { useAppContext } from '../context/state'
 export default function Profile() {
   const { profile } = useAppContext()
 
-  useEffect(() => {
-    console.log(profile)
-  }, [])
-
   return (
     <>
       <CardLayout title="Favorite Stores" width="is-full">
         <div className="columns is-multiline">
           {
             profile.favorites?.map(favorite => (
-              <StoreCard store={favorite} key={favorite.id} width="is-full" />
+              <StoreCard store={favorite} key={favorite.id} width="is-one-third" />
             ))
           }
         </div>

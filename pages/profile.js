@@ -1,14 +1,22 @@
-import { useEffect, useState } from 'react'
+import { useEffect } from 'react'
 import CardLayout from '../components/card-layout'
 import Layout from '../components/layout'
 import Navbar from '../components/navbar'
 import { ProductCard } from '../components/product/card'
 import { StoreCard } from '../components/store/card'
-import Table from '../components/table'
 import { useAppContext } from '../context/state'
+import { getUserProfile } from '../data/auth'
 
 export default function Profile() {
-  const { profile } = useAppContext()
+  const { profile, setProfile } = useAppContext()
+
+  useEffect(() => {
+    getUserProfile().then((profileData) => {
+      if (profileData) {
+        setProfile(profileData)
+      }
+    })
+  })
 
   return (
     <>
@@ -35,7 +43,7 @@ export default function Profile() {
       <CardLayout title="Products recommended to you" width="is-full">
         <div className="columns is-multiline">
           {
-            profile.recommendation?.map(recommendation => (
+            profile.recommendations?.map(recommendation => (
               <ProductCard product={recommendation.product} key={recommendation.product.id} width="is-one-third" />
             ))
           }

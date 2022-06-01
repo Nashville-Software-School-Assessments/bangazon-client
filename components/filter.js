@@ -9,7 +9,8 @@ export default function Filter({ productCount, onSearch, locations }) {
     name: useRef(),
     min_price: useRef(),
     order_by: useRef(),
-    direction: useRef()
+    direction: useRef(),
+    number_sold: useRef(),
   }
 
   const [showFilters, setShowFilters] = useState(false)
@@ -145,6 +146,15 @@ export default function Filter({ productCount, onSearch, locations }) {
                     refEl={refEls.min_price}
                   />
 
+                </div>
+                <hr className="dropdown-divider"></hr>
+                <div className="dropdown-item">
+                  <Input
+                    type="number"
+                    placeholder="Number Sold"
+                    addlClass="is-horizontal"
+                    refEl={refEls.number_sold}
+                  />
                 </div>
                 <hr className="dropdown-divider"></hr>
                 <div className="dropdown-item">

@@ -1,7 +1,7 @@
 import { fetchWithResponse } from "./fetcher"
 
 export function login(user) {
-  return fetchWithResponse('api/login', {
+  return fetchWithResponse('login', {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json'
@@ -11,7 +11,7 @@ export function login(user) {
 }
 
 export function register(user) {
-  return fetchWithResponse('api/register', {
+  return fetchWithResponse('register', {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json'
@@ -21,7 +21,7 @@ export function register(user) {
 }
 
 export function getUserProfile() {
-  return fetchWithResponse('api/profile/my-profile', {
+  return fetchWithResponse('profile', {
     headers: {
       Authorization: `Token ${localStorage.getItem('token')}`,
     }

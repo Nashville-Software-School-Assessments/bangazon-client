@@ -8,19 +8,26 @@ import { getProducts } from '../../data/products'
 export default function Products() {
   const [products, setProducts] = useState([])
   const [isLoading, setIsLoading] = useState(true)
+  const [loadingMessage, setLoadingMessage] = useState("Loading products...")
   const [locations, setLocations] = useState([])
 
   useEffect(() => {
     getProducts().then(data => {
       if (data) {
-        setProducts(data)
-        setIsLoading(false)
+
         const locationData = [...new Set(data.map(product => product.location))]
-        setLocations(locationData.map(location => ({
+        const locationObjects = locationData.map(location => ({
           id: location,
           name: location
-        })))
+        }))
+
+        setProducts(data)
+        setIsLoading(false)
+        setLocations(locationObjects)
       }
+    })
+    .catch(err => {
+      setLoadingMessage(`Unable to retrieve products. Status code ${err.message} on response.`)
     })
   }, [])
 
@@ -32,7 +39,8 @@ export default function Products() {
     })
   }
 
-  if (isLoading) return <p>Loading...</p>
+  if (isLoading) return <p>{loadingMessage}</p>
+
   return (
     <>
       <Filter productCount={products.length} onSearch={searchProducts} locations={locations} />
@@ -45,6 +53,7 @@ export default function Products() {
     </>
   )
 }
+
 Products.getLayout = function getLayout(page) {
   return (
     <Layout>

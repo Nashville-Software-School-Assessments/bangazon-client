@@ -1,7 +1,7 @@
 import { fetchWithResponse, fetchWithoutResponse } from './fetcher'
 
 export function getStores() {
-  return fetchWithResponse('api/stores', {
+  return fetchWithResponse('stores', {
     headers: {
       Authorization: `Token ${localStorage.getItem('token')}`
     }
@@ -9,7 +9,7 @@ export function getStores() {
 }
 
 export function getStoreById(id) {
-  return fetchWithResponse(`api/stores/${id}`, {
+  return fetchWithResponse(`stores/${id}`, {
     headers: {
       Authorization: `Token ${localStorage.getItem('token')}`
     }
@@ -17,7 +17,7 @@ export function getStoreById(id) {
 }
 
 export function addStore(store) {
-  return fetchWithResponse(`api/stores`, {
+  return fetchWithResponse(`stores`, {
     method: 'POST',
     headers: {
       Authorization: `Token ${localStorage.getItem('token')}`,
@@ -28,7 +28,7 @@ export function addStore(store) {
 }
 
 export function editStore(store) {
-  return fetchWithoutResponse(`api/stores/${store.id}`, {
+  return fetchWithoutResponse(`stores/${store.id}`, {
     method: 'PUT',
     headers: {
       Authorization: `Token ${localStorage.getItem('token')}`,
@@ -39,7 +39,7 @@ export function editStore(store) {
 }
 
 export function favoriteStore(storeId) {
-  return fetchWithoutResponse(`api/stores/${storeId}/favorite`, {
+  return fetchWithoutResponse(`stores/${storeId}/favorite`, {
     method: 'POST',
     headers: {
       Authorization: `Token ${localStorage.getItem('token')}`,
@@ -49,7 +49,7 @@ export function favoriteStore(storeId) {
 }
 
 export function unfavoriteStore(storeId) {
-  return fetchWithoutResponse(`api/stores/${storeId}/unfavorite`, {
+  return fetchWithoutResponse(`stores/${storeId}/unfavorite`, {
     method: 'DELETE',
     headers: {
       Authorization: `Token ${localStorage.getItem('token')}`,

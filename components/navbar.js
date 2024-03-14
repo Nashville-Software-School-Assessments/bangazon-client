@@ -78,7 +78,11 @@ export default function Navbar() {
 
     <nav className="navbar mb-3 is-warning px-5 is-fixed-top is-top" role="navigation" aria-label="main navigation">
       <div className="navbar-brand">
-        <Link href="/"><a className="navbar-item">Bangazon Unlimited</a></Link>
+
+          <Link href="/">
+            <img src="/images/logo.png" alt="Logo" style={{ width:"4rem", height: "4rem"}} className="relative" />
+          </Link>
+
 
         <a role="button" className="navbar-burger" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample" ref={hamburger} onClick={showMobileNavbar}>
           <span aria-hidden="true"></span>

@@ -1,8 +1,8 @@
 import { fetchWithResponse, fetchWithoutResponse } from './fetcher'
 
 export function getProducts(query=undefined) {
-  const url = 'api/products'
-  
+  const url = 'products'
+
   if (query) {
     url += `?${query}`
   }
@@ -15,7 +15,7 @@ export function getProducts(query=undefined) {
 }
 
 export function getCategories() {
-  return fetchWithResponse('api/categories', {
+  return fetchWithResponse('productcategories', {
     headers: {
       Authorization: `Token ${localStorage.getItem('token')}`
     }
@@ -23,7 +23,7 @@ export function getCategories() {
 }
 
 export function getProductById(id) {
-  return fetchWithResponse(`api/products/${id}`, {
+  return fetchWithResponse(`products/${id}`, {
     headers: {
       Authorization: `Token ${localStorage.getItem('token')}`
     }
@@ -31,7 +31,7 @@ export function getProductById(id) {
 }
 
 export function addProductToOrder(id) {
-  return fetchWithResponse(`api/products/${id}/add_to_order`, {
+  return fetchWithResponse(`products/${id}/cart`, {
     method: 'POST',
     headers: {
       Authorization: `Token ${localStorage.getItem('token')}`
@@ -40,7 +40,7 @@ export function addProductToOrder(id) {
 }
 
 export function removeProductFromOrder(id) {
-  return fetchWithoutResponse(`api/products/${id}/remove_from_order`, {
+  return fetchWithoutResponse(`products/${id}/remove🌮from🌮order`, {
     method: 'DELETE',
     headers: {
       Authorization: `Token ${localStorage.getItem('token')}`
@@ -49,7 +49,7 @@ export function removeProductFromOrder(id) {
 }
 
 export function deleteProduct(id) {
-  return fetchWithoutResponse(`api/products/${id}`, {
+  return fetchWithoutResponse(`products/${id}`, {
     method: 'DELETE',
     headers: {
       Authorization: `Token ${localStorage.getItem('token')}`
@@ -58,7 +58,7 @@ export function deleteProduct(id) {
 }
 
 export function rateProduct(productId, rating) {
-  return fetchWithResponse(`api/products/${productId}/rate-product`, {
+  return fetchWithResponse(`products/${productId}/rate-product`, {
     method: 'POST',
     headers: {
       Authorization: `Token ${localStorage.getItem('token')}`,
@@ -69,7 +69,7 @@ export function rateProduct(productId, rating) {
 }
 
 export function addProduct(product) {
-  return fetchWithResponse(`api/products`, {
+  return fetchWithResponse(`products`, {
     method: 'POST',
     headers: {
       Authorization: `Token ${localStorage.getItem('token')}`,
@@ -80,7 +80,7 @@ export function addProduct(product) {
 }
 
 export function editProduct(id, product) {
-  return fetchWithoutResponse(`api/products/${id}`, {
+  return fetchWithoutResponse(`products/${id}`, {
     method: 'PUT',
     headers: {
       Authorization: `Token ${localStorage.getItem('token')}`,
@@ -91,7 +91,7 @@ export function editProduct(id, product) {
 }
 
 export function recommendProduct(id, username) {
-  return fetchWithResponse(`api/products/${id}/recommend`, {
+  return fetchWithResponse(`products/${id}/recommend`, {
     method: 'POST',
     headers: {
       Authorization: `Token ${localStorage.getItem('token')}`,
@@ -102,7 +102,7 @@ export function recommendProduct(id, username) {
 }
 
 export function likeProduct(productId) {
-  return fetchWithoutResponse(`api/products/${productId}/like`, {
+  return fetchWithoutResponse(`products/${productId}/like`, {
     method: 'POST',
     headers: {
       Authorization: `Token ${localStorage.getItem('token')}`,
@@ -112,7 +112,7 @@ export function likeProduct(productId) {
 }
 
 export function unLikeProduct(productId) {
-  return fetchWithoutResponse(`api/products/${productId}/unlike`, {
+  return fetchWithoutResponse(`products/${productId}/unlike`, {
     method: 'DELETE',
     headers: {
       Authorization: `Token ${localStorage.getItem('token')}`,

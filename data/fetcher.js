@@ -1,4 +1,5 @@
-const baseUrl = 'http://localhost:8000'
+const API_URL = 'http://localhost:8000'
+
 const checkError = (res) => {
   if (!res.ok) {
     throw Error(res.status);
@@ -7,7 +8,7 @@ const checkError = (res) => {
 }
 
 const checkErrorJson = (res) => {
-  if (!res.ok) {
+  if (res.status !== 200) {
     throw Error(res.status);
   } else {
     return res.json()
@@ -20,14 +21,14 @@ const catchError = (err) => {
     window.location.href = "/login"
   }
   if (err.message === '404') {
-    return err
+    throw Error(err.message);
   }
 }
 
-export const fetchWithResponse = (url, options) => fetch(`${baseUrl}/${url}`, options)
+export const fetchWithResponse = (resource, options) => fetch(`${API_URL}/${resource}`, options)
   .then(checkErrorJson)
   .catch(catchError)
 
-export const fetchWithoutResponse = (url, options) => fetch(`${baseUrl}/${url}`, options)
+export const fetchWithoutResponse = (resource, options) => fetch(`${API_URL}/${resource}`, options)
   .then(checkError)
   .catch(catchError)

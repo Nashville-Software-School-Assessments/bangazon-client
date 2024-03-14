@@ -1,7 +1,9 @@
 import { fetchWithResponse } from './fetcher'
 
 export function getCart() {
-  return fetchWithResponse('api/orders/current', {
+  // TODO: evil bug for students
+  // return fetchWithResponse('carat', {
+  return fetchWithResponse('cart', {
     headers: {
       Authorization: `Token ${localStorage.getItem('token')}`
     }
@@ -9,7 +11,7 @@ export function getCart() {
 }
 
 export function getOrders() {
-  return fetchWithResponse('api/orders', {
+  return fetchWithResponse('orders', {
     headers: {
       Authorization: `Token ${localStorage.getItem('token')}`
     }
@@ -17,7 +19,7 @@ export function getOrders() {
 }
 
 export function completeCurrentOrder(orderId, paymentTypeId) {
-  return fetchWithResponse(`api/orders/${orderId}/complete`, {
+  return fetchWithResponse(`orders/${orderId}/complete`, {
     method: 'PUT',
     headers: {
       Authorization: `Token ${localStorage.getItem('token')}`,

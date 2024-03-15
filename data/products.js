@@ -15,7 +15,7 @@ export function getProducts(query=undefined) {
 }
 
 export function getCategories() {
-  return fetchWithResponse('categories', {
+  return fetchWithResponse('productcategories', {
     headers: {
       Authorization: `Token ${localStorage.getItem('token')}`
     }
@@ -31,7 +31,7 @@ export function getProductById(id) {
 }
 
 export function addProductToOrder(id) {
-  return fetchWithResponse(`products/${id}/add_to_order`, {
+  return fetchWithResponse(`products/${id}/cart`, {
     method: 'POST',
     headers: {
       Authorization: `Token ${localStorage.getItem('token')}`

@@ -1,7 +1,7 @@
 import { fetchWithResponse, fetchWithoutResponse } from "./fetcher";
 
 export function getPaymentTypes() {
-  return fetchWithResponse('paymenttypes', {
+  return fetchWithResponse('payment-types', {
     headers: {
       Authorization: `Token ${localStorage.getItem('token')}`
     }
@@ -9,7 +9,7 @@ export function getPaymentTypes() {
 }
 
 export function addPaymentType(paymentType) {
-  return fetchWithResponse(`paymenttypes`, {
+  return fetchWithResponse(`payment-types`, {
     method: 'POST',
     headers: {
       Authorization: `Token ${localStorage.getItem('token')}`,
@@ -20,7 +20,7 @@ export function addPaymentType(paymentType) {
 }
 
 export function deletePaymentType(id) {
-  return fetchWithoutResponse(`paymenttypes/${id}`, {
+  return fetchWithoutResponse(`payment-types/${id}`, {
     method: 'DELETE',
     headers: {
       Authorization: `Token ${localStorage.getItem('token')}`

@@ -1,9 +1,7 @@
 import { fetchWithResponse } from './fetcher'
 
 export function getCart() {
-  // TODO: evil bug for students
-  // return fetchWithResponse('carat', {
-  return fetchWithResponse('cart', {
+  return fetchWithResponse('cårt', {
     headers: {
       Authorization: `Token ${localStorage.getItem('token')}`
     }
